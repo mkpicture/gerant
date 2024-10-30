@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interface de Gestion de Pizzeria</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gestion de Izzoua Pizza</h1>
+    
+    <section class="card">
+      <h2>Inventaire des Pizzas</h2>
+      <button class="btn" onclick="addPizza()"><i class="fas fa-plus"></i> Ajouter Pizza</button>
+      <table id="pizza-inventory">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Les lignes de pizza s'ajoutent ici -->
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Ajouter une Commande</h2>
+      <form id="order-form">
+        <label>Nom du Client: <input type="text" id="customer-name" required></label>
+        <label>Numéro de Téléphone: <input type="text" id="customer-phone" required></label>
+        <label>Type de Pizza:
+          <select id="pizza-type" required></select>
+        </label>
+        <label>Type de Commande:
+          <select id="order-type" onchange="toggleDeliveryFields()" required>
+            <option value="pickup">À emporter</option>
+            <option value="delivery">Livraison</option>
+          </select>
+        </label>
+        <div id="delivery-details" style="display: none;">
+          <label>Adresse de Livraison: <input type="text" id="delivery-address" required></label>
+          <label>Heure de Livraison: <input type="datetime-local" id="delivery-time" required></label>
+          <label>Livreur:
+            <select id="delivery-person" required></select>
+          </label>
+        </div>
+        <button class="btn" type="button" onclick="addOrder()"><i class="fas fa-plus-circle"></i> Ajouter Commande</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Liste des Commandes</h2>
+      <table id="order-list">
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Montant</th>
+            <th>Adresse</th>
+            <th>Heure de Livraison</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Les lignes de commande s'ajoutent ici -->
+        </tbody>
+      </table>
+      <p>Total des revenus: <span id="revenue">0 FCFA</span></p>
+    </section>
+
+    <section class="card">
+      <h2>Gérer les Livreurs</h2>
+      <form id="delivery-form">
+        <label>Nom du Livreur: <input type="text" id="delivery-name" required></label>
+        <button class="btn" type="button" onclick="addDeliveryPerson()"><i class="fas fa-plus"></i> Ajouter Livreur</button>
+      </form>
+      <ul id="delivery-list"></ul>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
